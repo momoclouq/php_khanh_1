@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:simpleType name="idType">
+        <xs:restriction base="xs:integer">
+            <xs:pattern value="[0-9][0-9][0-9]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:element name="station">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="rec" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:attribute name="ts" type="xs:int" use="required"/>
+                        <xs:attribute name="nox" type="xs:decimal"/>
+                        <xs:attribute name="no" type="xs:decimal"/>
+                        <xs:attribute name="no2" type="xs:decimal"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+
+            <xs:attribute name="id" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="188"/>
+                        <xs:enumeration value="203"/>
+                        <xs:enumeration value="206"/>
+                        <xs:enumeration value="209"/>
+                        <xs:enumeration value="213"/>
+                        <xs:enumeration value="215"/>
+                        <xs:enumeration value="228"/>
+                        <xs:enumeration value="270"/>
+                        <xs:enumeration value="271"/>
+                        <xs:enumeration value="375"/>
+                        <xs:enumeration value="395"/>
+                        <xs:enumeration value="452"/>
+                        <xs:enumeration value="447"/>
+                        <xs:enumeration value="459"/>
+                        <xs:enumeration value="463"/>
+                        <xs:enumeration value="481"/>
+                        <xs:enumeration value="500"/>
+                        <xs:enumeration value="501"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="AURN Bristol Centre"/>
+                        <xs:enumeration value="Brislington Depot"/>
+                        <xs:enumeration value="Rupert Street"/>
+                        <xs:enumeration value="IKEA M32"/>
+                        <xs:enumeration value="Old Market"/>
+                        <xs:enumeration value="Parson Street School"/>
+                        <xs:enumeration value="Temple Meads Station"/>
+                        <xs:enumeration value="Wells Road"/>
+                        <xs:enumeration value="Trailer Portway P&amp;R"/>
+                        <xs:enumeration value="Newfoundland Road Police Station"/>
+                        <xs:enumeration value="Shiner's Garage"/>
+                        <xs:enumeration value="Bath Road"/>
+                        <xs:enumeration value="AURN St Pauls"/>
+                        <xs:enumeration value="Cheltenham Road \ Station Road"/>
+                        <xs:enumeration value="Fishponds Road"/>
+                        <xs:enumeration value="Temple Way"/>
+                        <xs:enumeration value="CREATE Centre Roof"/>
+                        <xs:enumeration value="Colston Avenue"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+
+            <xs:attribute name="geocode" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

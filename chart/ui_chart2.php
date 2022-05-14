@@ -47,7 +47,7 @@ if (isset($_GET['submitted']) && $_GET['submitted'] == '1') {
             <label class="input_label">Date: </label>
             <input type="date" 
                 name="date2" 
-                value="2019-12-31"
+                value=<?php echo $date2; ?>
                 min="2015-01-01"
                 max="2019-12-31" /> 
         </div>

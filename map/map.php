@@ -9,6 +9,7 @@ define("IDS", array('188', '203', '206', '209', '213', '215', '228', '270', '271
 #arrays to store immediate value
 $length = count(IDS);
 $geocodes = array_fill(0, $length, array("0", "0"));
+$stationNames = array_fill(0 , $length, "unknown");
 $noLevels = array_fill(0, $length, 0);
 $no2Levels = array_fill(0, $length, 0);
 $noxLevels = array_fill(0, $length, 0);
@@ -25,7 +26,9 @@ for ($i = 0; $i < $length; $i++) {
         $geocodes[$i] = array("not available", "not available");
         continue;
     }
+
     $geocodes[$i] = explode(",", $xml['geocode']);
+    $stationNames[$i] = $xml['name'];
 
     foreach ($xml->children() as $record) {
         $recordTime = new DateTime();
@@ -39,8 +42,6 @@ for ($i = 0; $i < $length; $i++) {
             $noLevels[$i] = intval($record['no']);
             $no2Levels[$i] = intval($record['no2']);
             $noxLevels[$i] = intval($record['nox']);
-
-            echo "NO: " . $noLevels[$i] . " - NO2: " . $no2Levels[$i] . " - NOX: " . $noxLevels[$i] . "<br>"; 
         }
     }
 }
@@ -49,11 +50,12 @@ $output1 = <<<js
 
 <script type="text/javascript">
     function initMap() {
-        const uluru = { lat: 51.4572041156, lng: -2.58564914143 };
+        const uluru = { lat: 51.432675707, lng: -2.58564914143 };
         
         const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 7,
+            zoomControl: true,
             center: uluru,
+            zoom: 10,
         });
 
         let markers = [];
@@ -70,17 +72,18 @@ for($i = 0; $i < $length; $i++){
     $no = $noLevels[$i];
     $no2 = $no2Levels[$i];
     $nox = $noxLevels[$i];
+    $name = $stationNames[$i];
 
     //process intval latitude and longitude
-    $latitude = intval($latitude);
-    $longitude = intval($longitude);
+    $latitude = floatval($latitude);
+    $longitude = floatval($longitude);
 
     $temp = <<<tempx
 
     markers.push(new google.maps.Marker({
         position: { lat: {$latitude}, lng: {$longitude} },
         map: map,
-        title: "NO: {$no} - NO2: {$no2} - NOX: {$nox}"
+        label: "{$name} [NO: {$no} - NO2: {$no2} - NOX: {$nox}]"
     }));
 
     tempx;

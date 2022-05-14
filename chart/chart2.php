@@ -49,7 +49,7 @@ $output = <<<js
         ]);
 
         var options = {
-          title: '24 hour statistics on {$pollutant2} in {$date2}',
+          title: '24 hour statistics on {$pollutant2} in {$date2} for station {$xml['name']}',
           curveType: 'function',
           subtitle: 'Concentration (µg/m³)'
         };

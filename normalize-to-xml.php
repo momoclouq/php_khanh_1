@@ -64,3 +64,5 @@ foreach (IDS as $id) {
 
     fclose($file);
 }
+
+?>

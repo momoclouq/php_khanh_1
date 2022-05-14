@@ -51,7 +51,8 @@ if (isset($_GET['submitted']) && $_GET['submitted'] == '1') {
         <div><?php require 'map.php'; ?></div>
 
         <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDieBIT2N8ssHbliZ-iarhFx64PBE-CAWE&callback=initMap&v=weekly"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9ouiEqdMiTT3QVY8rawooTx_Up-QnLfA
+&callback=initMap&v=weekly"
             defer
         ></script>
     </body>
